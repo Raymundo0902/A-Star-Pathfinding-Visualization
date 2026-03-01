@@ -53,6 +53,7 @@ public class Node extends JButton implements ActionListener {
     public void setAsOpen() {
         open = true;
     }
+
     public void setAsChecked() {
         if(start == false && goal == false) {
             setBackground(Color.orange);
@@ -64,7 +65,6 @@ public class Node extends JButton implements ActionListener {
         setBackground(Color.magenta);
         setForeground(Color.black);
     }
-
 
     // Method runs when button detects an action event such as a click.
     @Override
