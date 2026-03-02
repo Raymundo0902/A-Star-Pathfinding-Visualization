@@ -20,15 +20,17 @@ public class TestPanel extends JPanel {
 
 
     // JPanel settings
-    final int maxCol = 16;
-    final int maxRow = 10;
-    final int nodeSize = 70;
-    final int screenWidth = nodeSize * maxCol;
-    final int screenHeight = nodeSize * maxRow;
+    final int maxCol = 28;
+    final int maxRow = 23;
+//    final int nodeSize = 40;
+    final int screenWidth = 1400;
+    final int screenHeight = 768;
 
     // 2D array that holds references to Node objects
     Node[][] node = new Node[maxCol][maxRow];
     Node startNode, goalNode, currentNode;
+
+    // Stores nodes depending on their status.
     ArrayList<Node> openNodes = new ArrayList<>();
     ArrayList<Node> checkedList = new ArrayList<>();
 
@@ -65,9 +67,9 @@ public class TestPanel extends JPanel {
         }
 
         // Set start, goal and solid nodes here. (modifies already placed nodes to visually represent start and goal nodes):
-
         setStartNode(2, 7);
-        setGoalNode(11,2);
+        setGoalNode(26
+                ,2);
 
         setSolidNode(6,1);
         setSolidNode(6,2);
@@ -81,8 +83,23 @@ public class TestPanel extends JPanel {
         setSolidNode(9,7);
         setSolidNode(10,7);
         setSolidNode(11,7);
+        setSolidNode(14,7);
+        setSolidNode(14,8);
+        setSolidNode(14,9);
+        setSolidNode(14,10);
+        setSolidNode(14,11);
+        setSolidNode(14,12);
+        setSolidNode(14,11);
+        setSolidNode(14,14);
+        setSolidNode(14,13);
+        setSolidNode(13,14);
+        setSolidNode(12,14);
+        setSolidNode(12,15);
 
-        // Display cost on screen
+
+
+
+        // Display all costs on screen
         setCostOnNodes();
 
     }

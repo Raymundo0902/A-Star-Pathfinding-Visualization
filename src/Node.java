@@ -32,14 +32,14 @@ public class Node extends JButton implements ActionListener {
     public void setAsStart() {
         setBackground(Color.red);
         setForeground(Color.black);
-        setText("Start");
+        setText("S");
         start = true;
     }
 
     public void setAsGoal() {
         setBackground(Color.green);
         setForeground(Color.black);
-        setText("Goal");
+        setText("G");
         goal = true;
 
     }
