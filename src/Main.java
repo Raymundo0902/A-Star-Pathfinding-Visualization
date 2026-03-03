@@ -7,6 +7,7 @@ public class Main {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.add(new TestPanel());
+        window.setTitle("A* Pathfinding Visual");
 
         window.pack();
         window.setLocationRelativeTo(null);

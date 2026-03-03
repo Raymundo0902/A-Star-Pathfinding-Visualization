@@ -13,6 +13,7 @@ import java.util.ArrayList;
      reach the goal efficiently.
 
      There's a manual/auto search method. Uncomment in the KeyHandler class to experiment with both.
+      - You can manually click it yourself, or can press enter to let the algorithm find the path itself.
 
 */
 
@@ -20,11 +21,11 @@ public class TestPanel extends JPanel {
 
 
     // JPanel settings
-    final int maxCol = 28;
-    final int maxRow = 23;
-//    final int nodeSize = 40;
-    final int screenWidth = 1400;
-    final int screenHeight = 768;
+    final int maxCol = 26;
+    final int maxRow = 20;
+    final int screenWidth = 1300;
+    final int screenHeight = 800;
+
 
     // 2D array that holds references to Node objects
     Node[][] node = new Node[maxCol][maxRow];
@@ -32,13 +33,14 @@ public class TestPanel extends JPanel {
 
     // Stores nodes depending on their status.
     ArrayList<Node> openNodes = new ArrayList<>();
-    ArrayList<Node> checkedList = new ArrayList<>();
+    ArrayList<Node> checkedNodes = new ArrayList<>();
 
     // Others
     boolean goalReached = false;
     int step = 0;
 
     public TestPanel() {
+
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -50,6 +52,7 @@ public class TestPanel extends JPanel {
         // Place nodes
         int col = 0;
         int row = 0;
+
 
         while(col < maxCol && row < maxRow) {
 
@@ -67,40 +70,14 @@ public class TestPanel extends JPanel {
         }
 
         // Set start, goal and solid nodes here. (modifies already placed nodes to visually represent start and goal nodes):
-        setStartNode(2, 7);
-        setGoalNode(26
-                ,2);
+        setStartNode(1, 3);
+        setGoalNode(25,2);
 
-        setSolidNode(6,1);
-        setSolidNode(6,2);
-        setSolidNode(7,2);
-        setSolidNode(8,2);
-        setSolidNode(9,2);
-        setSolidNode(9,3);
-        setSolidNode(9,4);
-        setSolidNode(9,5);
-        setSolidNode(9,6);
-        setSolidNode(9,7);
-        setSolidNode(10,7);
-        setSolidNode(11,7);
-        setSolidNode(14,7);
-        setSolidNode(14,8);
-        setSolidNode(14,9);
-        setSolidNode(14,10);
-        setSolidNode(14,11);
-        setSolidNode(14,12);
-        setSolidNode(14,11);
-        setSolidNode(14,14);
-        setSolidNode(14,13);
-        setSolidNode(13,14);
-        setSolidNode(12,14);
-        setSolidNode(12,15);
-
-
-
+        setAllSolidNodes();
 
         // Display all costs on screen
         setCostOnNodes();
+
 
     }
 
@@ -164,7 +141,7 @@ public class TestPanel extends JPanel {
             int col = currentNode.col;
 
             currentNode.setAsChecked();
-            checkedList.add(currentNode);
+            checkedNodes.add(currentNode);
             openNodes.remove(currentNode);
 
             // Only open nodes if there's a node around the current node to avoid NullPointer errors
@@ -225,7 +202,7 @@ public class TestPanel extends JPanel {
             int col = currentNode.col;
 
             currentNode.setAsChecked();
-            checkedList.add(currentNode);
+            checkedNodes.add(currentNode);
             openNodes.remove(currentNode);
 
             // Open the "up" and "down" nodes if available on grid.
@@ -293,6 +270,97 @@ public class TestPanel extends JPanel {
             node.parent = currentNode; // need this to track back the path when we reach the goal.
             openNodes.add(node);
         }
+    }
+
+    private void setAllSolidNodes() {
+        setSolidNode(6,1);
+        setSolidNode(6,2);
+        setSolidNode(7,2);
+        setSolidNode(8,2);
+        setSolidNode(9,2);
+        setSolidNode(9,3);
+        setSolidNode(9,4);
+        setSolidNode(9,5);
+        setSolidNode(9,6);
+        setSolidNode(9,7);
+        setSolidNode(10,7);
+        setSolidNode(11,7);
+        setSolidNode(14,7);
+        setSolidNode(14,8);
+        setSolidNode(14,9);
+        setSolidNode(14,10);
+        setSolidNode(14,11);
+        setSolidNode(14,12);
+        setSolidNode(14,11);
+        setSolidNode(14,14);
+        setSolidNode(14,13);
+        setSolidNode(13,14);
+        setSolidNode(12,14);
+        setSolidNode(12,15);
+
+        setSolidNode(3,11);
+        setSolidNode(4,11);
+        setSolidNode(5,11);
+        setSolidNode(5,12);
+        setSolidNode(5,13);
+        setSolidNode(5,14);
+        setSolidNode(5,15);
+        setSolidNode(4,15);
+        setSolidNode(4,15);
+        setSolidNode(3,15);
+        setSolidNode(3,14);
+        setSolidNode(3,16);
+        setSolidNode(3,17);
+        setSolidNode(3,18);
+
+        setSolidNode(25,1);
+        setSolidNode(24,1);
+        setSolidNode(24,2);
+        setSolidNode(24,3);
+        setSolidNode(24,4);
+        setSolidNode(24,5);
+
+        setSolidNode(21,5);
+
+        setSolidNode(20,1);
+        setSolidNode(21,1);
+        setSolidNode(21,2);
+        setSolidNode(22,4);
+        setSolidNode(23,4);
+
+
+
+        setSolidNode(19,1);
+        setSolidNode(19,2);
+        setSolidNode(19,3);
+        setSolidNode(19,4);
+        setSolidNode(20,5);
+
+        setSolidNode(20,6);
+        setSolidNode(20,7);
+        setSolidNode(20,8);
+        setSolidNode(20,9);
+        setSolidNode(20,10);
+
+
+
+        setSolidNode(19,10);
+        setSolidNode(18,10);
+        setSolidNode(17,10);
+        setSolidNode(17,11);
+        setSolidNode(17,12);
+        setSolidNode(17,13);
+
+        setSolidNode(17,13);
+        setSolidNode(17,13);
+        setSolidNode(17,13);
+        setSolidNode(17,13);
+        setSolidNode(17,13);
+
+
+
+
+
     }
 
 
