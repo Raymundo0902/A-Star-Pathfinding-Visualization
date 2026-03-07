@@ -45,8 +45,9 @@ public class TestPanel extends JPanel {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         // responsible to automatic sizing and positioning the components.
+        // GridLayout divides the panel by screenWidth / maxCol and screenHeight / maxRow and uses the results to know how wide/tall each cell should be.
         this.setLayout(new GridLayout(maxRow, maxCol));
-        this.addKeyListener(new KeyHandler(this));
+        this.addKeyListener(new KeyDetector(this));
         this.setFocusable(true);
 
         // Place nodes
@@ -60,6 +61,7 @@ public class TestPanel extends JPanel {
             node[col][row] = new Node(col, row);
             // Add the current node object to the JPanel. GridLayout automatically positions it
             // Swing automatically renders it.
+            // adds a button that's a node to the gridlayout cell
             this.add(node[col][row]);
 
             col++;
@@ -77,8 +79,6 @@ public class TestPanel extends JPanel {
 
         // Display all costs on screen
         setCostOnNodes();
-
-
     }
 
     private void setStartNode(int col, int row) {
@@ -127,7 +127,7 @@ public class TestPanel extends JPanel {
         node.fCost = node.gCost + node.hCost;
 
         if(node != startNode && node != goalNode) {
-            node.setText("<html>F:" + node.fCost + "<br>G:"+ node.gCost+"</html>"); // used html tags because JButton doesn't really support line breaks
+//            node.setText("<html>F:" + node.fCost + "<br>G:"+ node.gCost+"</html>"); // used html tags because JButton doesn't really support line breaks
         }
     }
 
@@ -254,6 +254,7 @@ public class TestPanel extends JPanel {
         Node current = goalNode;
 
         while(current != startNode) {
+            System.out.println(current);
             current = current.parent; // gets updated each iteration
 
             if(current != startNode) {
@@ -273,89 +274,121 @@ public class TestPanel extends JPanel {
     }
 
     private void setAllSolidNodes() {
-        setSolidNode(6,1);
-        setSolidNode(6,2);
-        setSolidNode(7,2);
-        setSolidNode(8,2);
-        setSolidNode(9,2);
-        setSolidNode(9,3);
-        setSolidNode(9,4);
-        setSolidNode(9,5);
-        setSolidNode(9,6);
-        setSolidNode(9,7);
-        setSolidNode(10,7);
-        setSolidNode(11,7);
-        setSolidNode(14,7);
-        setSolidNode(14,8);
-        setSolidNode(14,9);
-        setSolidNode(14,10);
-        setSolidNode(14,11);
-        setSolidNode(14,12);
-        setSolidNode(14,11);
-        setSolidNode(14,14);
-        setSolidNode(14,13);
-        setSolidNode(13,14);
-        setSolidNode(12,14);
-        setSolidNode(12,15);
 
-        setSolidNode(3,11);
-        setSolidNode(4,11);
-        setSolidNode(5,11);
-        setSolidNode(5,12);
-        setSolidNode(5,13);
-        setSolidNode(5,14);
-        setSolidNode(5,15);
-        setSolidNode(4,15);
-        setSolidNode(4,15);
-        setSolidNode(3,15);
-        setSolidNode(3,14);
-        setSolidNode(3,16);
+
+// TOP SECTION
+        setSolidNode(1,2); setSolidNode(2,2);
+        setSolidNode(5,1); setSolidNode(5,2);
+        setSolidNode(7,1); setSolidNode(8,1); setSolidNode(9,1);
+        setSolidNode(11,1); setSolidNode(11,2);
+        setSolidNode(14,1); setSolidNode(14,2);
+        setSolidNode(17,1); setSolidNode(18,1); setSolidNode(19,1); setSolidNode(20,1);
+
+// UPPER LEFT / CENTER
+        setSolidNode(2,3); setSolidNode(2,4);
+        setSolidNode(4,2); setSolidNode(4,3);
+        setSolidNode(4,4); setSolidNode(5,4);
+        setSolidNode(7,2); setSolidNode(7,3);
+        setSolidNode(9,4);  setSolidNode(11,4);
+        setSolidNode(12,3); setSolidNode(12,4); setSolidNode(12,5);
+        setSolidNode(13,3); setSolidNode(14,3); setSolidNode(15,3); setSolidNode(16,3);
+        setSolidNode(16,4); setSolidNode(17,4); setSolidNode(18,4); setSolidNode(19,4);
+        setSolidNode(20,3); setSolidNode(21,3); setSolidNode(21,4);
+
+// MID UPPER
+        setSolidNode(3,5); setSolidNode(3,6);
+        setSolidNode(3,7); setSolidNode(4,7);
+        setSolidNode(5,7); setSolidNode(6,7);
+        setSolidNode(7,5); setSolidNode(8,5);
+        setSolidNode(9,5);
+        setSolidNode(13,5); setSolidNode(13,6);
+        setSolidNode(15,5); setSolidNode(15,6);
+        setSolidNode(15,7); setSolidNode(15,8);
+        setSolidNode(18,5); setSolidNode(18,6);
+        setSolidNode(18,7); setSolidNode(19,7); setSolidNode(20,7);
+        setSolidNode(22,5); setSolidNode(22,6); setSolidNode(22,7);
+
+// CENTER
+        setSolidNode(4,9); setSolidNode(5,9);
+        setSolidNode(6,9); setSolidNode(7,9);
+        setSolidNode(7,8); setSolidNode(7,10);
+        setSolidNode(9,8); setSolidNode(9,9); setSolidNode(9,10);
+        setSolidNode(10,10); setSolidNode(11,10);
+        setSolidNode(12,8); setSolidNode(12,9);
+        setSolidNode(13,9);
+        setSolidNode(16,9); setSolidNode(16,10); setSolidNode(16,11);
+        setSolidNode(18,10); setSolidNode(18,11); setSolidNode(18,12);
+        setSolidNode(20,9); setSolidNode(20,10);
+        setSolidNode(22,9); setSolidNode(22,10);
+
+// MID LOWER
+        setSolidNode(1,12); setSolidNode(2,12);
+        setSolidNode(3,12); setSolidNode(4,12);
+        setSolidNode(6,12);
+        setSolidNode(8,12); setSolidNode(9,12);
+        setSolidNode(9,13); setSolidNode(9,14);
+        setSolidNode(9,15);
+        setSolidNode(10,12); setSolidNode(11,12);
+        setSolidNode(11,13);
+        setSolidNode(13,12); setSolidNode(13,13);
+        setSolidNode(15,12); setSolidNode(16,12);
+        setSolidNode(19,12); setSolidNode(20,12);
+        setSolidNode(21,12); setSolidNode(22,12);
+        setSolidNode(23,12);
+
+// LOWER SECTION
+        setSolidNode(2,14); setSolidNode(2,15); setSolidNode(2,16);
+        setSolidNode(2,16); setSolidNode(3,16); setSolidNode(4,16); setSolidNode(5,16); setSolidNode(6,16);
+        setSolidNode(12,16); setSolidNode(13,16); setSolidNode(13,17);
+        setSolidNode(16,14); setSolidNode(16,15);
+        setSolidNode(16,16); setSolidNode(18,16);
+
+        setSolidNode(18,16);
+        setSolidNode(20,15); setSolidNode(20,16);
+        setSolidNode(22,17);
+
+        setSolidNode(0,8);
+        setSolidNode(0,9);
+        setSolidNode(1,9);
+        setSolidNode(1,10);
+        setSolidNode(1,11);
+
+        setSolidNode(9,0);
+        setSolidNode(10,0);
+        setSolidNode(11,0);
+
         setSolidNode(3,17);
         setSolidNode(3,18);
+        setSolidNode(21,13);
+        setSolidNode(21,14);
+        setSolidNode(21,15);
 
-        setSolidNode(25,1);
-        setSolidNode(24,1);
-        setSolidNode(24,2);
-        setSolidNode(24,3);
-        setSolidNode(24,4);
-        setSolidNode(24,5);
+        setSolidNode(21,17);
+        setSolidNode(20,17);
+        setSolidNode(18,17);
+        setSolidNode(18,18);
+        setSolidNode(19,18);
+        setSolidNode(19,19);
 
-        setSolidNode(21,5);
-
-        setSolidNode(20,1);
-        setSolidNode(21,1);
-        setSolidNode(21,2);
-        setSolidNode(22,4);
-        setSolidNode(23,4);
-
-
-
-        setSolidNode(19,1);
-        setSolidNode(19,2);
-        setSolidNode(19,3);
-        setSolidNode(19,4);
-        setSolidNode(20,5);
-
-        setSolidNode(20,6);
-        setSolidNode(20,7);
-        setSolidNode(20,8);
-        setSolidNode(20,9);
-        setSolidNode(20,10);
+        setSolidNode(9,19);
+        setSolidNode(9,18);
+        setSolidNode(10,18);
+        setSolidNode(11,18);
+        setSolidNode(12,18);
 
 
 
-        setSolidNode(19,10);
-        setSolidNode(18,10);
-        setSolidNode(17,10);
-        setSolidNode(17,11);
-        setSolidNode(17,12);
-        setSolidNode(17,13);
+        setSolidNode(13,18);
 
-        setSolidNode(17,13);
-        setSolidNode(17,13);
-        setSolidNode(17,13);
-        setSolidNode(17,13);
-        setSolidNode(17,13);
+
+
+
+
+
+
+
+
+
 
 
 

@@ -24,6 +24,7 @@ public class Node extends JButton implements ActionListener {
         this.row = row;
 
         // set background and foreground colors for node
+
         setBackground(Color.white);
         setForeground(Color.black);
         addActionListener(this);

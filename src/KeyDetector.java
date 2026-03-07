@@ -1,11 +1,11 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyHandler implements KeyListener {
+public class KeyDetector implements KeyListener {
 
     TestPanel tp;
 
-    public KeyHandler(TestPanel tp){
+    public KeyDetector(TestPanel tp){
         this.tp = tp;
     }
     @Override
